@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+} from "react-router-dom";
+import { Provider } from 'react-redux';
+import Store from './store';
+import Calender from "./pages/Calender"
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Provider store={Store}>
+        <Router>
+          <Switch>
+            <Route path="/year/:year/month/:month">
+              <Calender />
+            </Route>
+            <Route path="/">
+              <Calender />
+            </Route>
+          </Switch>
+        </Router>
+      </Provider>
     </div>
   );
 }
 
 export default App;
+
